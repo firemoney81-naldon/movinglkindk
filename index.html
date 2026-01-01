@@ -1,23 +1,445 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+
+  <!-- Schema.org 구조화 데이터 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MovingCompany",
+    "name": "안양이삿짐센터",
+    "description": "안양시 원룸, 투룸, 빌라, 아파트, 오피스텔 포장이사 및 이사짐센터 전문 서비스",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "경기도 안양시 동안구 시민대로 XXX",
+      "addressLocality": "안양시",
+      "addressRegion": "경기도",
+      "postalCode": "140XX",
+      "addressCountry": "KR"
+    },
+    "telephone": "031-XXX-XXXX",
+    "url": "https://www.example.com/anyang-move",
+    "openingHours": "Mo-Su 08:00-20:00",
+    "priceRange": "KRW 200000 - 1000000",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "안양 이사 서비스",
+      "itemListElement": [
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"안양 원룸 포장이사"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"안양 투룸 포장이사"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"안양 빌라·아파트 포장이사"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"안양 오피스텔 포장이사"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"안양 사무실 이사"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"안양 이사짐센터 보관서비스"}}
+      ]
+    }
+  }
+  </script>
+
+  <link rel="canonical" href="https://www.example.com/anyang-move">
+
+  <!-- 디자인 개선을 위한 CSS (소프트하고 명확한 디자인 적용) -->
+  <style>
+    body { font-family: 'Malgun Gothic', '맑은 고딕', Dotum, sans-serif; margin: 0; padding: 0; color: #333; line-height: 1.8; background-color: #f7f9fc; font-size: 16px; }
+    header { background-color: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 5px solid #0056b3; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); }
+    header h1 { color: #0056b3; font-size: 2.5em; margin-bottom: 10px; font-weight: bold; }
+    header p { color: #555; font-size: 1.2em; max-width: 800px; margin: 0 auto; line-height: 1.5; }
+    nav ul { list-style: none; padding: 0; margin-top: 20px; display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; }
+    nav a { text-decoration: none; color: #0056b3; font-weight: bold; font-size: 1.1em; padding: 8px 15px; background: #eef5ff; border-radius: 20px; transition: background 0.3s, color 0.3s; }
+    nav a:hover { background: #0056b3; color: #ffffff; }
+
+    section { max-width: 900px; margin: 30px auto; padding: 25px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+    h2 { font-size: 2em; color: #0056b3; text-align: center; margin-bottom: 25px; border-bottom: 2px solid #e0eaff; padding-bottom: 10px; }
+    h3 { font-size: 1.5em; color: #333; border-left: 5px solid #0056b3; padding-left: 10px; margin-top: 20px; }
+    p { margin-bottom: 15px; color: #555; }
+    
+    .cta-btn { display: inline-block; background: #ff7f00; color: #fff; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-size: 1.2em; font-weight: bold; transition: background 0.3s, transform 0.2s; text-align: center; margin-top: 20px; }
+    .cta-btn:hover { background: #e66f00; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+
+    .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+    .service-box { border: 1px solid #ddd; padding: 20px; border-radius: 8px; transition: transform 0.3s, box-shadow 0.3s; background-color: #fcfcfc; }
+    .service-box:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); }
+    .service-box h3 { border-left: none; padding-left: 0; color: #0056b3; }
+    .service-box p { font-size: 0.95em; line-height: 1.6; color: #666; }
+
+    .highlight-section { background-color: #eef5ff; padding: 25px; border-radius: 10px; margin-top: 20px; }
+    .highlight-section h3 { color: #0056b3; border-bottom: 2px solid #cfe2ff; padding-bottom: 10px; margin-bottom: 15px; }
+    .highlight-section ul { list-style: square; margin-left: 20px; color: #555; line-height: 1.6; }
+
+    /* 테이블 스타일 */
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #fff; border: 1px solid #e0e0e0; }
+    th, td { border: 1px solid #e0e0e0; padding: 12px; text-align: left; }
+    th { background-color: #f0f8ff; font-weight: bold; color: #333; }
+    tr:nth-child(even) { background-color: #f9f9f9; }
+
+    /* FAQ 스타일 */
+    .faq .item { margin-bottom: 20px; border-bottom: 1px dashed #ddd; padding-bottom: 15px; }
+    .faq h3 { cursor: pointer; color: #0056b3; position: relative; padding-right: 30px; }
+    .faq h3:after { content: '+'; position: absolute; right: 0; font-size: 1.5em; top: -5px; color: #0056b3; transition: transform 0.3s; }
+    .faq h3.active:after { content: '-'; transform: rotate(180deg); }
+    .faq p { display: none; margin-top: 10px; padding-left: 20px; border-left: 3px solid #ff7f00; color: #444; }
+    
+    /* 견적 폼 스타일 */
+    .quote-form-container { display: flex; flex-wrap: wrap; gap: 20px; }
+    .quote-form-section { flex: 1; min-width: 300px; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #fcfcfc; }
+    .quote-form-section h4 { border-bottom: 1px dashed #ddd; padding-bottom: 10px; margin-bottom: 15px; color: #0056b3; }
+    .quote-form-section label { display: block; margin-bottom: 5px; font-weight: bold; color: #444; }
+    .quote-form-section input[type="text"], 
+    .quote-form-section input[type="tel"], 
+    .quote-form-section input[type="email"], 
+    .quote-form-section input[type="number"], 
+    .quote-form-section textarea,
+    .quote-form-section select { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 1em; }
+    .quote-form-section input[type="radio"], .quote-form-section input[type="checkbox"] { margin-right: 5px; }
+    .quote-form-section .radio-group { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+
+    /* 푸터 스타일 */
+    footer { text-align: center; padding: 20px; background-color: #333; color: #ccc; font-size: 0.9em; margin-top: 40px; }
+    footer a { color: #ccc; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* 반응형 디자인 */
+    @media (max-width: 768px) {
+      header h1 { font-size: 2em; }
+      nav ul { flex-direction: column; align-items: center; }
+      nav a { width: 100%; text-align: center; }
+      section { padding: 15px; margin: 20px 10px; }
+      h2 { font-size: 1.8em; }
+      .service-grid { grid-template-columns: 1fr; }
+      .quote-form-container { flex-direction: column; }
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- 헤더 및 내비게이션 -->
+  <header>
+    <h1>안양이삿짐센터: 2026년 이사 전문, 포장이사 견적 비교</h1>
+    <p>안양시 <strong>동안구</strong>와 <strong>만안구</strong>를 아우르는 전문 이사 서비스. 원룸, 투룸, 빌라, 아파트, 사무실 포장이사 및 보관 서비스까지. <br>안전하고 신속한 이사 경험을 2026년에도 선사합니다. 무료 방문 견적 문의하세요.</p>
     <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+      <ul>
+        <li><a href="#company">회사 소개</a></li>
+        <li><a href="#services">주요 서비스</a></li>
+        <li><a href="#price-guide">이사 비용 안내</a></li>
+        <li><a href="#reviews">실제 이용 후기</a></li>
+        <li><a href="#quote">무료 견적 신청</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  </header>
+
+  <!-- 1. 안양시 지역 정보 및 SEO 핵심 키워드 섹션 -->
+  <section id="company">
+    <h2>안양시 이사짐센터, 왜 지역 전문 업체여야 할까요?</h2>
+    <p>안양시는 경기도 중서부에 위치한 주요 거점 도시로, 크게 <strong>만안구</strong>와 <strong>동안구</strong>로 나뉩니다. 두 지역은 각기 다른 주거 및 교통 특성을 가지고 있어, 안양 이사에 대한 깊이 있는 이해가 중요합니다. 특히 <strong>동안구</strong>는 1990년대 평촌 신도시 개발로 대규모 아파트 단지(평촌동, 호계동, 비산동, 귀인동)가 밀집해 있으며, <strong>만안구</strong>는 상대적으로 오래된 주택가(안양동, 석수동, 박달동)가 많아 이사 환경이 상이합니다.</p>
+    <p>저희 <strong>안양이삿짐센터</strong>는 안양 지역의 지리적 특성을 완벽히 파악하고 있습니다. 평촌신도시 아파트 단지 내 복잡한 주차 규제와 엘리베이터 사용 예약 시스템, 그리고 만안구 구도심의 좁은 골목길과 사다리차 접근성까지 모두 고려한 맞춤형 이사 계획을 수립합니다. 이는 <strong>안양 포장이사</strong>의 효율성과 안전성을 극대화하는 핵심 요소입니다. 2026년 새해에도 안양시민 여러분께 최고의 서비스를 제공할 준비가 되어 있습니다.</p>
+
+    <div class="highlight-section">
+      <h3>안양 지역별 이사 키워드 (30개 이상)</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;"><strong>안양이삿짐센터</strong></li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 포장이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 원룸 이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 투룸 이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">동안구 포장이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">만안구 포장이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">평촌 이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">범계동 이사짐센터</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">인덕원 이사짐</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">호계동 포장이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">비산동 포장이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">귀인동 이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">석수동 이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">박달동 이사짐센터</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양동 이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 일번가 이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 오피스텔 이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 사무실 이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 반포장이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 이사 보관</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 이사비용</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 포장이사 추천</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 이사 무료 견적</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 손 없는 날</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">평촌 이사 업체</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">만안구 용달 이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 포장이사 잘하는 곳</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 이사 견적 비교</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양시 사다리차 이사</li>
+        <li style="display: inline-block; padding: 5px 10px; margin: 5px; background: #e0eaff; border-radius: 5px;">안양 이사 후기</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. 서비스 상세 안내 섹션 -->
+  <section id="services">
+    <h2>안양 포장이사 서비스 상세 안내: 고객 맞춤형 이사 솔루션</h2>
+    <p>안양시의 다양한 주거 환경(아파트, 빌라, 원룸, 오피스텔)에 맞춰 최적의 이사 서비스를 제공합니다. 고객님의 짐량, 거주 형태, 예산에 따라 합리적인 옵션을 선택하실 수 있습니다. 특히 <strong>안양 포장이사</strong> 서비스는 포장부터 정리까지 모든 과정을 전담하여 고객님의 편의성을 높입니다.</p>
+
+    <div class="service-grid">
+      <div class="service-box">
+        <h3>1. 원룸/투룸 포장이사 (싱글 및 소형 가구)</h3>
+        <p>1인 가구, 신혼부부, 학생들을 위한 맞춤형 이사입니다. <strong>안양 원룸 이사</strong>는 짐이 적더라도 포장재, 인력, 운송 차량이 모두 포함되어 이사 당일 번거로움 없이 편안하게 이사할 수 있습니다. 특히 좁은 계단이나 엘리베이터가 없는 층이 많은 만안구 지역 원룸 이사에 효율적입니다. <strong>안양 투룸 포장이사</strong>는 1.5톤~2톤 규모로 진행되며, 이삿짐 운반 및 가구 재배치까지 깔끔하게 처리해 드립니다.</p>
+      </div>
+      <div class="service-box">
+        <h3>2. 빌라/아파트 포장이사 (일반 가정 이사)</h3>
+        <p>가장 보편적인 <strong>안양 아파트 이사</strong> 서비스입니다. Pyeongchon(평촌), 범계(Beomgye), 인덕원(Indeogwon) 등 대단위 아파트 단지 밀집 지역에서 선호도가 높습니다. 대형 가전 및 가구에 대한 전문 포장, 에어컨 분리/설치(선택 사항), 입주 후 정리 및 스팀 청소 서비스까지 포함됩니다. 특히 짐이 많은 경우 5톤 트럭을 활용하며, 사다리차 사용이 필수인 고층 아파트 이사에도 능숙합니다.</p>
+      </div>
+      <div class="service-box">
+        <h3>3. 사무실/오피스텔 이사</h3>
+        <p>안양 지역의 오피스텔 및 사무실 이사를 전문으로 합니다. <strong>안양 오피스텔 이사</strong>는 짐이 많지 않더라도 층수가 높고 주차 관리가 까다로운 특성을 고려해야 합니다. 귀중한 사무용 집기나 서류의 파손 없이 신속한 운반을 위해 전용 박스를 사용합니다. <strong>안양 사무실 이사</strong>는 주말이나 야간에도 작업이 가능하며, IT 장비 이전 및 사무 가구 재배치에 특화된 인력을 투입합니다.</p>
+      </div>
+      <div class="service-box">
+        <h3>4. 보관이사 서비스 (이사짐 보관)</h3>
+        <p>입주 날짜 불일치, 인테리어 공사 등으로 인해 짐 보관이 필요한 경우에 유용합니다. 저희 <strong>안양이삿짐센터</strong>는 최신 보안 시설을 갖춘 실내 보관 창고를 운영합니다. 특히 습기에 취약한 가전이나 의류에 곰팡이가 생기지 않도록 보관 전 습기 제거 작업을 진행합니다. 보관 기간에 따라 합리적인 비용을 책정하며, 보관 중에도 안전하게 짐을 관리합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 이사 비용 안내 및 견적 상세 분석 섹션 -->
+  <section id="price-guide">
+    <h2>2026년 안양 이사짐센터 예상 비용 및 견적 가이드</h2>
+    <p>포장이사 비용은 짐의 양(톤수), 이동 거리, 작업 환경(층수, 엘리베이터 유무), 인원 수, 이사 날짜(손 없는 날, 주말 등)에 따라 크게 달라집니다. 아래 표는 2026년 안양시 내 이사 비용의 일반적인 예상 범위이며, 정확한 견적은 방문 상담을 통해 확정됩니다. 특히 <strong>안양 포장이사 가격</strong>은 계절적 요인(성수기: 봄, 가을)과 이사철 손 없는 날에 변동 폭이 큽니다.</p>
+
+    <table border="1">
+      <tr>
+        <th>서비스 유형</th>
+        <th>예상 비용 범위 (2026년 기준)</th>
+        <th>주요 특징 및 참고 사항</th>
+      </tr>
+      <tr>
+        <td><strong>원룸 포장이사 (1톤)</strong></td>
+        <td>200,000원 ~ 400,000원</td>
+        <td>1인 가구 기준. 짐이 적고 이동 거리가 짧은 경우. 만안구 빌라/원룸 다수.</td>
+      </tr>
+      <tr>
+        <td><strong>투룸 포장이사 (1.5톤~2톤)</strong></td>
+        <td>350,000원 ~ 600,000원</td>
+        <td>2인 가구 기준. 짐량에 따라 반포장 이사도 선택 가능.</td>
+      </tr>
+      <tr>
+        <td><strong>빌라 포장이사 (2.5톤~5톤)</strong></td>
+        <td>500,000원 ~ 800,000원</td>
+        <td>3인 이상 가정. 사다리차 이용 필수 여부, 짐량에 따라 2.5톤 또는 5톤 차량 결정.</td>
+      </tr>
+      <tr>
+        <td><strong>아파트 포장이사 (5톤)</strong></td>
+        <td>600,000원 ~ 1,200,000원</td>
+        <td>평촌신도시 등 대단지 아파트 이사. 작업 인원 3~4명 기준, 에어컨/가전 이전 별도.</td>
+      </tr>
+      <tr>
+        <td><strong>보관 이사 (추가 비용)</strong></td>
+        <td>일반 비용 + 보관료 (1일/월당)</td>
+        <td>보관 창고 종류(실내/실외) 및 기간에 따라 비용 변동.</td>
+      </tr>
+    </table>
+    <p>※ 상기 가격은 짐량, 층수, 작업 환경, 이사 날짜에 따라 달라질 수 있으므로, 정확한 견적은 반드시 현장 방문을 통해 확인하시기 바랍니다. 특히 주말이나 '손 없는 날'은 20~30% 할증이 적용될 수 있습니다.</p>
+    <a href="#quote" class="cta-btn">무료 방문 견적 신청하기</a>
+  </section>
+
+  <!-- 4. 고객 만족 및 소비자 보호 섹션 -->
+  <section id="reviews">
+    <h2>안양 포장이사, 고객 만족을 위한 약속과 소비자 피해 예방 가이드</h2>
+    <p>안양시 이사 고객님들의 높은 만족도를 유지하기 위해, 저희 <strong>안양이삿짐센터</strong>는 계약 이행 및 서비스 품질에 만전을 기합니다. 최근 한국소비자원의 보고서에 따르면, 포장이사 플랫폼을 이용한 소비자 중 약 30%가 이삿짐 파손, 계약 불이행 등의 피해를 경험했습니다. 이에 저희는 투명한 계약서 작성과 이사 전 책임 한도 고지를 통해 고객님의 권리를 보호하고 있습니다.</p>
+
+    <div class="highlight-section">
+      <h3>안양 이사 시 소비자 피해 예방 체크리스트</h3>
+      <ul>
+        <li><strong>정식 사업자 등록 확인:</strong> 관허업체 여부를 반드시 확인하고 계약을 진행합니다.</li>
+        <li><strong>계약서 필수 작성:</strong> 구두 계약이 아닌 서면 계약서를 통해 이사 비용, 서비스 범위, 손해배상 기준을 명확히 합니다.</li>
+        <li><strong>추가 요금 방지:</strong> 견적 시 포함되지 않은 식대, 수고비 등 현장 추가 요금을 요구하는 업체는 피해야 합니다.</li>
+        <li><strong>파손 보험 확인:</strong> 이사 중 파손 시 배상을 받을 수 있도록 손해배상 이행 보증 보험 가입 여부를 확인합니다.</li>
+        <li><strong>보관 이사 시 주의점:</strong> 보관 시 습기로 인한 곰팡이나 변색을 방지하기 위해 실내 보관 창고를 선택하고, 물품 건조 및 제습제 사용 여부를 확인합니다.</li>
+      </ul>
+    </div>
+
+    <p style="text-align: right;"><small>※ 출처: 한국소비자원, 2024년 포장이사 서비스 플랫폼 이용 실태 조사</small></p>
+
+  </section>
+
+  <!-- 5. 이사 과정 상세 설명 (전문성 강조) -->
+  <section id="process">
+    <h2>안양이삿짐센터의 이사 진행 과정: 체계적인 7단계 매뉴얼</h2>
+    <p>안전한 이사를 위해 저희가 지키는 7가지 원칙입니다. 단순히 짐을 옮기는 것을 넘어, 고객님의 새로운 시작을 돕는다는 마음으로 모든 과정에 세심한 주의를 기울입니다.</p>
+    <div class="service-grid">
+      <div class="service-box">
+        <h4>1. 무료 견적 및 상담</h4>
+        <p>전화 또는 온라인으로 상담을 접수하시면, 전문 상담사가 고객님의 이사 환경(만안구/동안구 지역, 짐량, 특이사항 등)을 고려하여 무료 방문 견적을 진행합니다. 숨은 비용 없는 투명한 견적을 제공합니다.</p>
+      </div>
+      <div class="service-box">
+        <h4>2. 계약 및 이사 준비</h4>
+        <p>견적 내용에 동의하시면 정식 계약서를 작성하고, 이사 날짜 및 시간을 확정합니다. 이사 며칠 전부터 고객님께 이사 준비(귀중품 분리, 냉장고 정리 등)에 대한 안내를 드립니다.</p>
+      </div>
+      <div class="service-box">
+        <h4>3. 전문 포장 작업</h4>
+        <p>파손 위험이 높은 물품(유리, 도자기)은 에어캡과 전용 포장재로 꼼꼼하게 포장하고, 의류는 의류 전용 행거 박스에 담아 구김 없이 운반합니다.</p>
+      </div>
+      <div class="service-box">
+        <h4>4. 운반 및 운송</h4>
+        <p>경험이 풍부한 작업자들이 짐을 운반 차량에 안전하게 상차합니다. 안양시 내 이동 시에도 신속하고 정확하게 운행하며, 특히 엘리베이터가 없는 층은 사다리차를 사용하여 안전하게 작업합니다.</p>
+      </div>
+      <div class="service-box">
+        <h4>5. 하차 및 정리</h4>
+        <p>도착지에서 짐을 하차한 후, 고객님이 지정하신 위치에 가구와 가전제품을 배치합니다. 주방 식기류, 옷가지 등은 종류별로 분류하여 정리해 드립니다.</p>
+      </div>
+      <div class="service-box">
+        <h4>6. 청소 및 마무리</h4>
+        <p>이사 후 바닥 청소, 쓰레기 수거, 스팀 청소 서비스(선택 사항)를 통해 이사 흔적 없이 깨끗한 입주 환경을 제공합니다.</p>
+      </div>
+      <div class="service-box">
+        <h4>7. A/S 및 사후 관리</h4>
+        <p>이사 과정 중 발생한 문제에 대해 신속하게 A/S를 처리해 드립니다. 고객 만족을 최우선으로 하여 이사 후에도 불편함이 없도록 책임집니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. FAQ (자주 묻는 질문) 섹션 -->
+  <section id="faq" class="faq">
+    <h2>안양이삿짐센터 FAQ: 자주 묻는 질문 모음</h2>
+    <div class="item">
+      <h3>Q1: 안양 포장이사 비용은 어떻게 결정되나요?</h3>
+      <p>A: 이사 비용은 짐의 양(톤수), 이사하는 주택의 층수(사다리차 사용 여부), 이사 날짜(손 없는 날, 주말, 평일), 추가 옵션(에어컨 설치/분해, 청소 등)에 따라 결정됩니다. 정확한 비용 산정을 위해 무료 방문 견적을 받으시는 것을 추천합니다.</p>
+    </div>
+    <div class="item">
+      <h3>Q2: '손 없는 날' 이사 비용이 비싼 이유는 무엇인가요?</h3>
+      <p>A: '손 없는 날'은 이사를 해도 좋다는 길일로 여겨져 이사 수요가 급증합니다. 이로 인해 인력 수급이 어려워지고, 수요에 비해 공급이 부족하여 비용이 상승합니다. 평일이나 주말 중 '손 없는 날'이 아닌 날짜를 선택하시면 비용 절감 효과를 볼 수 있습니다.</p>
+    </div>
+    <div class="item">
+      <h3>Q3: 안양시 만안구, 동안구 지역별 이사 특징이 있나요?</h3>
+      <p>A: 예, 있습니다. <strong>동안구(평촌신도시)</strong> 지역은 대규모 아파트 단지가 많아 사다리차 접근성이 양호하고 엘리베이터 이용 규정이 까다롭습니다. 반면 <strong>만안구(안양동, 석수동, 박달동)</strong>는 오래된 주택가, 좁은 골목길이 많아 사다리차 사용이나 짐 운반에 난이도가 있을 수 있습니다. 저희는 지역별 특성을 고려한 맞춤형 이사를 제공합니다.</p>
+    </div>
+    <div class="item">
+      <h3>Q4: 보관 이사 시 짐 보관 기간은 어떻게 되나요?</h3>
+      <p>A: 보관 기간은 고객님의 일정에 맞춰 유연하게 조절 가능하며, 일반적으로 최소 1개월 단위로 계약합니다. 보관 창고는 실내 창고와 실외 컨테이너 중 선택 가능하며, 실내 창고가 습도 관리에 유리하여 짐 보존에 더 안전합니다.</p>
+    </div>
+  </section>
+
+  <!-- 7. 자세한 견적 신청 섹션 (체류 시간 증대를 위한 상세 폼) -->
+  <section id="quote">
+    <h2>안양 포장이사 무료 견적 상세 요청 (2026년)</h2>
+    <p>아래 양식에 이사 상세 정보를 입력해 주시면, 고객님의 조건에 맞는 정확한 <strong>안양 포장이사 견적</strong>을 안내해 드립니다. 자세하게 입력하실수록 오차 없는 견적을 받아보실 수 있으며, 개인 정보는 안전하게 보호됩니다.</p>
+    <form action="/submit-quote" method="post" class="quote-form-container">
+      <div class="quote-form-section">
+        <h4>기본 정보</h4>
+        <p><label for="name">이름</label><input type="text" id="name" name="name" required></p>
+        <p><label for="phone">연락처</label><input type="tel" id="phone" name="phone" required></p>
+        <p><label for="email">이메일</label><input type="email" id="email" name="email"></p>
+        <p><label for="move_date">희망 이사 날짜</label><input type="date" id="move_date" name="move_date" required></p>
+        <p><strong>이사 유형 선택</strong>
+          <select id="move_type" name="move_type" required>
+            <option value="">-- 이사 유형 선택 --</option>
+            <option value="packing">포장이사 (Full Packing Service)</option>
+            <option value="semi_packing">반포장이사 (Semi-Packing Service)</option>
+            <option value="storage">보관이사 (Storage Service)</option>
+            <option value="office">사무실 이사 (Office Move)</option>
+            <option value="one_room">원룸 이사 (Studio Move)</option>
+          </select>
+        </p>
+      </div>
+      
+      <div class="quote-form-section">
+        <h4>출발지 정보 (현재 거주지)</h4>
+        <p><label for="departure_address">출발지 주소 (안양시 상세 주소)</label><input type="text" id="departure_address" name="departure_address" required></p>
+        <p><strong>출발지 주거 형태</strong>
+          <div class="radio-group">
+            <input type="radio" id="dep_apartment" name="departure_type" value="apartment" required><label for="dep_apartment">아파트</label>
+            <input type="radio" id="dep_villa" name="departure_type" value="villa"><label for="dep_villa">빌라/연립</label>
+            <input type="radio" id="dep_house" name="departure_type" value="house"><label for="dep_house">단독주택</label>
+            <input type="radio" id="dep_studio" name="departure_type" value="studio"><label for="dep_studio">원룸/오피스텔</label>
+          </div>
+        </p>
+        <p><label for="departure_floor">출발지 층수</label><input type="number" id="departure_floor" name="departure_floor" required></p>
+        <p><strong>사다리차 사용 가능 여부 (필수 항목)</strong>
+          <div class="radio-group">
+            <input type="radio" id="dep_ladder_yes" name="departure_ladder" value="yes" required><label for="dep_ladder_yes">예</label>
+            <input type="radio" id="dep_ladder_no" name="departure_ladder" value="no"><label for="dep_ladder_no">아니오</label>
+            <input type="radio" id="dep_ladder_unknown" name="departure_ladder" value="unknown"><label for="dep_ladder_unknown">모름</label>
+          </div>
+        </p>
+      </div>
+
+      <div class="quote-form-section">
+        <h4>도착지 정보 (새로운 거주지)</h4>
+        <p><label for="arrival_address">도착지 주소 (안양시 상세 주소)</label><input type="text" id="arrival_address" name="arrival_address" required></p>
+        <p><strong>도착지 주거 형태</strong>
+          <div class="radio-group">
+            <input type="radio" id="arr_apartment" name="arrival_type" value="apartment" required><label for="arr_apartment">아파트</label>
+            <input type="radio" id="arr_villa" name="arrival_type" value="villa"><label for="arr_villa">빌라/연립</label>
+            <input type="radio" id="arr_house" name="arrival_type" value="house"><label for="arr_house">단독주택</label>
+            <input type="radio" id="arr_studio" name="arrival_type" value="studio"><label for="arr_studio">원룸/오피스텔</label>
+          </div>
+        </p>
+        <p><label for="arrival_floor">도착지 층수</label><input type="number" id="arrival_floor" name="arrival_floor" required></p>
+        <p><strong>사다리차 사용 가능 여부 (필수 항목)</strong>
+          <div class="radio-group">
+            <input type="radio" id="arr_ladder_yes" name="arrival_ladder" value="yes" required><label for="arr_ladder_yes">예</label>
+            <input type="radio" id="arr_ladder_no" name="arrival_ladder" value="no"><label for="arr_ladder_no">아니오</label>
+            <input type="radio" id="arr_ladder_unknown" name="arrival_ladder" value="unknown"><label for="arr_ladder_unknown">모름</label>
+          </div>
+        </p>
+      </div>
+
+      <div class="quote-form-section" style="width: 100%;">
+        <h4>추가 짐량 및 특이사항 (정확한 견적을 위한 필수 항목)</h4>
+        <p><strong>주요 가전/가구 목록 (이사 톤수 산정 기준)</strong></p>
+        <p>
+          <input type="checkbox" id="fridge" name="items[]" value="fridge"><label for="fridge">냉장고 (양문형/대형)</label>
+          <input type="checkbox" id="washing_machine" name="items[]" value="washing_machine"><label for="washing_machine">세탁기/건조기</label>
+          <input type="checkbox" id="air_conditioner" name="items[]" value="air_conditioner"><label for="air_conditioner">에어컨 (분리/설치 요청)</label>
+          <input type="checkbox" id="piano" name="items[]" value="piano"><label for="piano">피아노</label>
+          <input type="checkbox" id="bed" name="items[]" value="bed"><label for="bed">침대 (킹사이즈/패밀리침대)</label>
+          <input type="checkbox" id="sofa" name="items[]" value="sofa"><label for="sofa">대형 소파</label>
+          <input type="checkbox" id="closet" name="items[]" value="closet"><label for="closet">붙박이장 분해/조립</label>
+          <input type="checkbox" id="safe" name="items[]" value="safe"><label for="safe">금고</label>
+        </p>
+        <p><label for="volume_details">추가 짐량/특이사항 상세 기술 (예: 짐이 많은 편/적은 편, 이삿짐 보관 필요, 에어컨 설치 요청 등)</label><textarea id="volume_details" name="volume_details" rows="3"></textarea></p>
+        <button type="submit" class="cta-btn">무료 견적 요청하기</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- 8. 신뢰성 확보를 위한 외부 링크 및 기타 정보 -->
+  <section id="external-info">
+    <h2>안양시 이사 관련 정보성 링크 및 자료</h2>
+    <p>안양시의 행정 정보, 인구 현황 등 이사 전후로 참고할 만한 공신력 있는 외부 자료를 제공합니다.</p>
+    <ul>
+      <li><a href="https://www.anyang.go.kr/main/index.do" target="_blank">안양시청 공식 홈페이지</a> (행정구역 및 지역 정보 확인)</li>
+      <li><a href="https://www.kostat.go.kr/" target="_blank">통계청</a> (안양시 인구 및 세대수 현황)</li>
+      <li><a href="https://www.kca.go.kr/" target="_blank">한국소비자원</a> (이사 서비스 관련 소비자 피해 구제 기준 및 통계)</li>
+      <li><a href="https://namu.wiki/w/%EC%95%88%EC%96%91%EC%8B%9C" target="_blank">나무위키 안양시</a> (안양시 지리적 특성 및 역사 정보)</li>
+      <li><a href="https://www.anyang.go.kr/division/index.do?mCode=MN002000000" target="_blank">안양시 행정구역 안내</a> (만안구/동안구 법정동, 행정동 상세 정보)</li>
+    </ul>
+  </section>
+
+  <!-- 9. 연락처 및 지도 정보 -->
+  <section id="contact">
+    <h2>연락처 및 상담 신청</h2>
+    <p>📞 전화: <a href="tel:031-XXX-XXXX">031-XXX-XXXX</a> (클릭하여 전화 상담)</p>
+    <p>📍 주소: 경기도 안양시 동안구 시민대로 XXX (안양시청 주변)</p>
+    <p>🕒 운영시간: 매일 08:00–20:00 (주말 및 공휴일 상담 가능)</p>
+    <!-- 구글맵 임베드 -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3167.585292398664!2d126.95304107621114!3d37.394273072049615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b5fb14f32b1d3%3A0x897c413c6a4d53c7!2z67aA7JaR7ISc656Y7ISc6rK_6re4!5e0!3m2!1sko!2skr!4v1704067200000!5m2!1sko!2skr" width="100%" height="300" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy"></iframe>
+  </section>
+
+  <!-- 푸터 -->
+  <footer>
+    <p>&copy; 2026 안양이삿짐센터. 경기도 안양시 동안구 시민대로 XXX. 대표: 홍길동. 사업자등록번호: 123-45-67890</p>
+    <p><a href="#privacy">개인정보처리방침</a> | <a href="#terms">이용약관</a></p>
+  </footer>
+
+  <!-- FAQ 토글 기능 JS (체류 시간 증대를 위한 기능) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqItems = document.querySelectorAll('.faq .item h3');
+      faqItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const answer = this.nextElementSibling;
+          this.classList.toggle('active');
+          if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+          } else {
+            answer.style.display = 'block';
+          }
+        });
+      });
+    });
+  </script>
+
+  
